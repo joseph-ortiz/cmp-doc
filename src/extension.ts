@@ -18,7 +18,30 @@ export function activate(context: vscode.ExtensionContext) {
         // The code you place here will be executed every time your command is executed
 
         // Display a message box to the user
-        vscode.window.showInformationMessage('Hello World!');
+        //vscode.window.showInformationMessage('Hello World!');
+
+        let editor = vscode.window.activeTextEditor;
+        if(!editor) {
+            return;
+        }
+
+        const baseUrl = 'https://developer.salesforce.com/docs/component-library';
+        
+        //simple validation
+        //TODO: needs to do validation to ensure the text is valid and can handle proper tags
+        const isLightingNamespace = (str : string) => str.includes('lightning:');
+        const isAuraNameSpace = (str : string) =>  str.includes('aura:');
+        const textIsEntered = (str : string) => str.length > 0;        
+        const isValidComponentTag = (str : string) => textIsEntered(str) && (isLightingNamespace(str) || isAuraNameSpace(str));                 
+        const buildCmpUrl = (cmpTag : string) => baseUrl + `/bundle/${cmpTag}/example`;
+        const openInBrowser = (docUrl : string) => vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(docUrl));
+        const logMessage = (msg : string) => vscode.window.showInformationMessage('text to match is: ' + msg);
+        
+        let selection = editor.selection;
+        let text = editor.document.getText(selection);
+        const docUrl = isValidComponentTag(text) ? buildCmpUrl(text) : baseUrl;
+        openInBrowser(docUrl);
+        logMessage(text);
     });
 
     context.subscriptions.push(disposable);
