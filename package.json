@@ -4,6 +4,11 @@
     "description": "opens related documentation",
     "version": "0.0.1",
     "publisher": "joseph-ortiz",
+    "repository" :
+    { "type" : "git"
+    , "url" : "https://github.com/joseph-ortiz/cmp-doc.git"
+    },
+
     "engines": {
         "vscode": "^1.24.0"
     },
