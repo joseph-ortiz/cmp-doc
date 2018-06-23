@@ -16,10 +16,6 @@ I found myself repeatedly referring to docs and wanted a quicker way to get to i
 1. From the command pallet, type `cmp-doc` and hit the ENTER key
 1. Your default browser should then open the example documentation to the lighting:card.
 
-## Requirements
-
-No other dependencies added  :blush: The extensionuses the already included 'vscode' module.
-
 ## Known Issues
 
 - It only works for components if you just highlight the text.
@@ -28,6 +24,7 @@ Highlighting the text: *`lightning:card`*  will work but it does not work if you
     - 
 - It does not open to the specficiation or documentation.
 - Recognizes only aura and lightning tags
+- testing 
 
 ## Release Notes
 
